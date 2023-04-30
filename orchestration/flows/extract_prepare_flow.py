@@ -32,5 +32,3 @@ def fetch_prepare_flow(year:int, month:int) -> pd.DataFrame:
     print("Data Fetched From Source Successfully")
     df = prepare(file_path)
     save_prepared_data(df, file_path)
-if __name__ == "__main__":
-    fetch_prepare_flow(2021, 3)
