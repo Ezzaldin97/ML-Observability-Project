@@ -1,2 +1,5 @@
 # config files
 *.yml
+
+# parquet files
+*.parquet
