@@ -18,7 +18,36 @@ Optional We Can do Automatic retraining for the Model.
 
 ## Project Setup:
 
-## Use Case
+- install all python requirements needed to complete the project by running the following
+```bash
+pip install -r requirements.txt
+```
+- create a directory called data, and inside this directory create 3 other directories 
+  - ref: for training dataset, this is our reference dataset.
+  - validation: for validation dataset.
+  - tmp: for datasets in production
+- make sure to install wget command in your OS, and run the following
+```bash
+# inside data/ref
+# use data of 2021-01 for training
+wget https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet -O yellow_tripdata_2021-01.parquet
+# inside data/validation
+# use data of 2021-02 for validation
+wget https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-02.parquet -O yellow_tripdata_2021-02.parquet
+```
+- run the flow of inference and data monitoring using the following:
+```bash
+python orchestration/inference_data_monitor.py --month {month} --year {year}
+```
+- run the flow of model performance using the following:
+```bash
+python orchestration/performance_feedback.py --month {month} --year {year}
+```
+- Reports Generated as json/html in reports directory.
+
+## Use Case:
+
+
 
 ## References:
 
