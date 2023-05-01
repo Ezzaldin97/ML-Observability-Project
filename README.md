@@ -1,4 +1,4 @@
-# Batch Scoring ML Observability Project:
+# ML Observability Project:
 
 ## Description:
 
@@ -6,7 +6,9 @@ Create Monitoring System/Reports for ML Model in Production to Track the Model P
 
 ## Objective:
 
-Getting Familiar with ML Observaility Concept, Use Evidently AI Package in Python which provides alot Metrics and Tests to Create Automatic Reports about Model Performance and Data, Simulate How to Create Batch Scoring Jobs/Data (Drift, Quality, Integrity) Jobs/Feedback of Batch Scoring Model Performance in Production, and Alert the Results Using Email.
+Getting Familiar with ML Observaility Concept, Use Evidently AI Package in Python which provides alot Metrics and Tests to Create Automatic Reports about Model Performance and Data, Simulate How to Create Batch Scoring Jobs/Data (Drift, Quality, Integrity) Jobs/Feedback of Batch Scoring Model Performance in Production.
+
+The Objective here is to focus on ML Observability Concepts in Production Like Data Drift Detection, Measure Data Quality/Stability, and Measure the Performance of the Model, so the Development Process here is not important as much as Understanding Monitoring in Production works.
 
 Optional We Can do Automatic retraining for the Model.
 
@@ -47,7 +49,30 @@ python orchestration/performance_feedback.py --month {month} --year {year}
 
 ## Use Case:
 
+Using NYC Taxi Datasets, Predict the trip duration, and Use the Prediction of trip duration and Real Value of trip duration (can be calculated by taking the difference between drop off time and pick up time) to Calculate the Performance of the Model Using the Following:
+```python
+ref_sample = ref_df.sample(n = 100000, random_state=42)
+curr_sample = curr_df.sample(n = 100000, random_state = 42)
+report = Report(metrics = [
+    RegressionPreset()
+])
+report.run(reference_data=ref_sample, current_data=curr_sample)
+```
+RegressionPreset here Provides alot of metrices to Measure the Performance of the Model on Data in production compared to its performance on training datasets.
 
+also Using the Predictors of Training and Test Datasets, Generate Data Quality/Drift Report Using the Following
+```python
+ref_sample = ref_df.sample(n = 100000, random_state=42)
+curr_sample = curr_df.sample(n = 100000, random_state = 42)
+report = Report(metrics=[
+    DataDriftPreset(columns=X_cols,
+                    stattest='kl_div',
+                    num_stattest_threshold=0.2),
+    DataQualityPreset(X_cols)
+])
+report.run(reference_data=ref_sample, current_data=curr_sample)
+```
+here DataDriftPreset Used to Calculate Data Drift between Reference and Current Datasets, it provide alot of Statistical Measures that detect the divergence between both datasets, check the documentaion for more info.
 
 ## References:
 
