@@ -10,4 +10,4 @@ credentials = EmailServerCredentials(
     username=conf.config["EMAIL-ADDRESS-PLACEHOLDER"],
     password=conf.config["PASSWORD-PLACEHOLDER"]
 )
-credentials.save("email-notifier")
+credentials.save("email-notifier", overwrite=True)
