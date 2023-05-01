@@ -9,7 +9,3 @@ utils/__pycache__
 
 # pycache in flows
 orchestration/flows/__pycache__
-
-# json file/ html files
-*.html
-*.json
