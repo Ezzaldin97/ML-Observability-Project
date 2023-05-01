@@ -8,7 +8,7 @@ import pickle
       tags = ["Load", "MLModel"], log_prints=True)
 def load_model():
     print("Load Model from bin directory")
-    with open(os.path.join("..", "..", "bin", "lgbm.pkl"), "rb") as pkl_file:
+    with open(os.path.join(".", "bin", "lgbm.pkl"), "rb") as pkl_file:
         model = pickle.load(pkl_file)
     return model
 
@@ -30,7 +30,7 @@ def generate_predictions(data_path:str, model) -> pd.DataFrame:
     print("Inference Completed Successfully..")
 
 @flow(name = "InferenceFlow", description = "Batch Scoring flow",
-      tags = ["Inference", "Batch", "scoring", "Predictions"], log_prints=True)
+      log_prints=True)
 def inference_flow(data_path:str) -> None:
     model = load_model()
     generate_predictions(data_path, model)
