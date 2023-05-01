@@ -3,3 +3,6 @@
 
 # parquet files
 *.parquet
+
+# pycache in utils directory
+utils/__pycache__
