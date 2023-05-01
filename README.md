@@ -16,7 +16,7 @@ Optional We Can do Automatic retraining for the Model.
 - Python >= 3.7 (I Used 3.7.9)
 - Knowledge in ML
 
-## Environment Setup:
+## Project Setup:
 
 ## Use Case
 
