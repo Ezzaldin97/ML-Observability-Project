@@ -1,6 +1,7 @@
 from prefect import task, flow
 import pandas as pd
 import pickle
+import os
 from evidently.report import Report
 from evidently.metric_preset import RegressionPreset
 
@@ -50,6 +51,7 @@ def parent_flow2(month:int, year:int) -> None:
     curr_df = get_current_data(file_path)
     ref_df = prepare_predict_reference()
     performance_report_generator(month, year, curr_df, ref_df)
+    os.remove(file_path)
 
 if __name__ == "__main__":
     parent_flow2(3, 2021)
