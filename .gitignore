@@ -6,3 +6,6 @@
 
 # pycache in utils directory
 utils/__pycache__
+
+# pycache in flows
+orchestration/flows/__pycache__
